@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACFAD127-04ED-4AD6-A608-33DD3CD3F8A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CooQ</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.4999.24676</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>CooQ</RootNamespace>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Logs">
+      <HintPath>..\Libs\Logs.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\Libs\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ColumnAttribute.cs" />
+    <Compile Include="ColumnBase.cs" />
+    <Compile Include="Column\KeyColumns\StringKeyColumn.cs" />
+    <Compile Include="Condition\BetweenAndCondition.cs" />
+    <Compile Include="CooqDataException\CooqDataAccessException.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="DatabaseProvider.cs" />
+    <Compile Include="Database\DbColumn.cs" />
+    <Compile Include="QueryExecutor.cs" />
+    <Compile Include="SchemaFactory.cs" />
+    <Compile Include="Utils\DbColumnFactory.cs" />
+    <Compile Include="Database\DbObject.cs" />
+    <Compile Include="Database\DbTable.cs" />
+    <Compile Include="CooqDataException\CooqPreconditionException.cs" />
+    <Compile Include="Database\IQueryBuilder.cs" />
+    <Compile Include="Database\ISchemaProvider.cs" />
+    <Compile Include="Interfaces\IQueryExecutor.cs" />
+    <Compile Include="QueryBuilder.cs" />
+    <Compile Include="Database\QueryExecutorBase.cs" />
+    <Compile Include="Function\AvgBigInteger.cs" />
+    <Compile Include="Function\AvgDecimal.cs" />
+    <Compile Include="Function\AvgDouble.cs" />
+    <Compile Include="Function\AvgFloat.cs" />
+    <Compile Include="Function\AvgSmallInt.cs" />
+    <Compile Include="Function\MaxBigInteger.cs" />
+    <Compile Include="Function\MaxDateTime.cs" />
+    <Compile Include="Function\MaxDecimal.cs" />
+    <Compile Include="Function\MaxDouble.cs" />
+    <Compile Include="Function\MaxFloat.cs" />
+    <Compile Include="Function\MaxSmallInt.cs" />
+    <Compile Include="Function\MinBigInteger.cs" />
+    <Compile Include="Function\MinDateTime.cs" />
+    <Compile Include="Function\MinDecimal.cs" />
+    <Compile Include="Function\MinDouble.cs" />
+    <Compile Include="Function\MinFloat.cs" />
+    <Compile Include="Function\MinSmallInt.cs" />
+    <Compile Include="Function\SumBigInteger.cs" />
+    <Compile Include="Function\SumDecimal.cs" />
+    <Compile Include="Function\SumDouble.cs" />
+    <Compile Include="Function\SumFloat.cs" />
+    <Compile Include="Function\SumSmallInt.cs" />
+    <Compile Include="Condition\InCondition.cs" />
+    <Compile Include="Condition\NotInCondition.cs" />
+    <Compile Include="Column\NumericColumnBase.cs" />
+    <Compile Include="Condition\NumericCondition.cs" />
+    <Compile Include="Column\OrderByColumn.cs" />
+    <Compile Include="DatabaseBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="ConnectionSetting.cs" />
+    <Compile Include="CooqDataException\DataAccessException.cs" />
+    <Compile Include="Database\Mssql\MssqlExecutor.cs" />
+    <Compile Include="Database\PostgreSql\PsqlExecutor.cs" />
+    <Compile Include="Attributes\TableAttribute.cs" />
+    <Compile Include="TableBase.cs" />
+    <Compile Include="StoredProcBase.cs" />
+    <Compile Include="Condition\Condition.cs" />
+    <Compile Include="Condition\ColumnCondition.cs" />
+    <Compile Include="Condition\NestedQueryCondition.cs" />
+    <Compile Include="Condition\IsNullCondition.cs" />
+    <Compile Include="Condition\IsNotNullCondition.cs" />
+    <Compile Include="Condition\AndCondition.cs" />
+    <Compile Include="Condition\OrCondition.cs" />
+    <Compile Include="Query.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utils\SqlHelper.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="Column\BigIntegerColumn.cs" />
+    <Compile Include="Column\BinaryColumn.cs" />
+    <Compile Include="Column\BoolColumn.cs" />
+    <Compile Include="Column\ByteColumn.cs" />
+    <Compile Include="Column\DateTime2Column.cs" />
+    <Compile Include="Column\DateTimeColumn.cs" />
+    <Compile Include="Column\DateTimeOffsetColumn.cs" />
+    <Compile Include="Column\DecimalColumn.cs" />
+    <Compile Include="Column\DoubleColumn.cs" />
+    <Compile Include="Column\EnumColumn.cs" />
+    <Compile Include="Column\FloatColumn.cs" />
+    <Compile Include="Column\GuidColumn.cs" />
+    <Compile Include="Column\IntegerColumn.cs" />
+    <Compile Include="Column\KeyColumns\BigIntegerKeyColumn.cs" />
+    <Compile Include="Column\KeyColumns\GuidKeyColumn.cs" />
+    <Compile Include="Column\KeyColumns\IntegerKeyColumn.cs" />
+    <Compile Include="Column\KeyColumns\NBigIntegerColumn.cs" />
+    <Compile Include="Column\KeyColumns\NGuidKeyColumn.cs" />
+    <Compile Include="Column\KeyColumns\NIntegerKeyColumn.cs" />
+    <Compile Include="Column\KeyColumns\NSmallIntColumn.cs" />
+    <Compile Include="Column\KeyColumns\SmallIntKeyColumn.cs" />
+    <Compile Include="Column\NBigIntegerColumn.cs" />
+    <Compile Include="Column\NBinaryColumn.cs" />
+    <Compile Include="Column\NBoolColumn.cs" />
+    <Compile Include="Column\NByteColumn.cs" />
+    <Compile Include="Column\NDateTime2Column.cs" />
+    <Compile Include="Column\NDateTimeColumn.cs" />
+    <Compile Include="Column\NDateTimeOffsetColumn.cs" />
+    <Compile Include="Column\NDecimalColumn.cs" />
+    <Compile Include="Column\NDoubleColumn.cs" />
+    <Compile Include="Column\NFloatColumn.cs" />
+    <Compile Include="Column\NGuidColumn.cs" />
+    <Compile Include="Column\NIntegerColumn.cs" />
+    <Compile Include="Column\NSmallIntColumn.cs" />
+    <Compile Include="Column\SmallIntColumn.cs" />
+    <Compile Include="Column\StringColumn.cs" />
+    <Compile Include="Core\AlaisCounter.cs" />
+    <Compile Include="Builder\DeleteBuilder.cs" />
+    <Compile Include="Builder\InsertBuilder.cs" />
+    <Compile Include="Core\SetValue.cs" />
+    <Compile Include="Builder\InsertSelectBuilder.cs" />
+    <Compile Include="Core\Parameters.cs" />
+    <Compile Include="Builder\QueryBuilderBase.cs" />
+    <Compile Include="Core\Join.cs" />
+    <Compile Include="Builder\QueryResult.cs" />
+    <Compile Include="Builder\TruncateBuilder.cs" />
+    <Compile Include="Builder\UpdateBuilder.cs" />
+    <Compile Include="Generate\GenerateCode.cs" />
+    <Compile Include="Generate\GenerateMetaDataSql.cs" />
+    <Compile Include="QueryBuilderFactory.cs" />
+    <Compile Include="Database\StoredProcedure.cs" />
+    <Compile Include="Database\SpParameter.cs" />
+    <Compile Include="Database\PostgreSql\PostgresSchemaProvider.cs" />
+    <Compile Include="Database\PostgreSql\PostgresQueryBuilder.cs" />
+    <Compile Include="Database\Mssql\MssqlSchemaProvider.cs" />
+    <Compile Include="Database\Mssql\MssqlQueryBuilder.cs" />
+    <Compile Include="Database\Mssql\Permissions.cs" />
+    <Compile Include="Database\Mssql\TableHints.cs" />
+    <Compile Include="Function\DateTimeFunctionBase.cs" />
+    <Compile Include="Function\NumericFunctionBase.cs" />
+    <Compile Include="Function\Avg.cs" />
+    <Compile Include="Function\Count.cs" />
+    <Compile Include="Function\CurrentDate.cs" />
+    <Compile Include="Function\CurrentDateOffset.cs" />
+    <Compile Include="Function\CustomSql.cs" />
+    <Compile Include="Function\DenseRank.cs" />
+    <Compile Include="Function\Max.cs" />
+    <Compile Include="Function\Min.cs" />
+    <Compile Include="Function\Rank.cs" />
+    <Compile Include="Function\RowNumber.cs" />
+    <Compile Include="Function\Sum.cs" />
+    <Compile Include="Function\DateFunction.cs" />
+    <Compile Include="Function\WindowFunction.cs" />
+    <Compile Include="Interfaces\IOrderByColumn.cs" />
+    <Compile Include="Interfaces\ISelectable.cs" />
+    <Compile Include="Interfaces\ISelectableColumns.cs" />
+    <Compile Include="Types\OrderBy.cs" />
+    <Compile Include="Types\DatabaseType.cs" />
+    <Compile Include="Interfaces\INumericCondition.cs" />
+    <Compile Include="Types\NumericOperator.cs" />
+    <Compile Include="Types\Operator.cs" />
+    <Compile Include="IResult.cs" />
+    <Compile Include="Types\QueryType.cs" />
+    <Compile Include="Interfaces\IEnumColumn.cs" />
+    <Compile Include="Types\JoinType.cs" />
+    <Compile Include="Types\UnionType.cs" />
+    <Compile Include="Interfaces\IDelete.cs" />
+    <Compile Include="Interfaces\IDeleteExecute.cs" />
+    <Compile Include="Interfaces\IDeleteReturning.cs" />
+    <Compile Include="Interfaces\IDeleteTimeout.cs" />
+    <Compile Include="Interfaces\IDeleteUseParams.cs" />
+    <Compile Include="Interfaces\IInsert.cs" />
+    <Compile Include="Interfaces\IInsertExecute.cs" />
+    <Compile Include="Interfaces\IReturning.cs" />
+    <Compile Include="Interfaces\IInsertTimeout.cs" />
+    <Compile Include="Interfaces\IInsertUseParams.cs" />
+    <Compile Include="Interfaces\IInsertSet.cs" />
+    <Compile Include="Interfaces\IInsertSelect.cs" />
+    <Compile Include="Interfaces\IInsertSelectQuery.cs" />
+    <Compile Include="Interfaces\IInsertSelectExecute.cs" />
+    <Compile Include="Interfaces\IFrom.cs" />
+    <Compile Include="Interfaces\IFromInto.cs" />
+    <Compile Include="Interfaces\ITop.cs" />
+    <Compile Include="Interfaces\IDistinct.cs" />
+    <Compile Include="Interfaces\IExecute.cs" />
+    <Compile Include="Interfaces\ITimeout.cs" />
+    <Compile Include="Interfaces\IUseParams.cs" />
+    <Compile Include="Interfaces\IAppend.cs" />
+    <Compile Include="Interfaces\IOrderBy.cs" />
+    <Compile Include="Interfaces\IGroupBy.cs" />
+    <Compile Include="Interfaces\IWhere.cs" />
+    <Compile Include="Interfaces\IJoin.cs" />
+    <Compile Include="Interfaces\IHaving.cs" />
+    <Compile Include="Interfaces\ITrucateExecute.cs" />
+    <Compile Include="Interfaces\ITruncateTimeout.cs" />
+    <Compile Include="Interfaces\IUpdate.cs" />
+    <Compile Include="Interfaces\IUpdateWhere.cs" />
+    <Compile Include="Interfaces\IUpdateJoin.cs" />
+    <Compile Include="Interfaces\IUpdateSet.cs" />
+    <Compile Include="Interfaces\IUpdateExecute.cs" />
+    <Compile Include="Interfaces\IUpdateReturning.cs" />
+    <Compile Include="Interfaces\IUpdateTimeout.cs" />
+    <Compile Include="Interfaces\IUpdateUseParams.cs" />
+    <Compile Include="Interfaces\IFunction.cs" />
+    <Compile Include="Interfaces\IWindowFunction.cs" />
+    <Compile Include="Database\Mssql\Permission.cs" />
+    <Compile Include="Function\DatePart.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

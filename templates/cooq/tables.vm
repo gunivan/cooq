@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CooQ;
+using ${namespace};
+
+namespace ${namespace}
+{                                     
+  public static class Tables
+  {
+    public static readonly List<CooQ.TableBase> TABLES = new List<CooQ.TableBase>();
+    static Tables()
+    {
+#foreach($table in $tables)
+#set ($tableClass = "${namespace}.Table.${table.Name}")
+      TABLES.Add(${tableClass}.${table.Name.toUpper()});
+#end
+    }
+  } 
+}

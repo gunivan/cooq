@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ${namespace}.Table;
+
+namespace ${namespace}.Record
+{                                   
+#set ($tableCapital = "${table.Name}")
+  public class ${tableCapital}Record : CooQ.Record {
+    private new ${tableCapital} Table {
+      get { return (${tableCapital})base.Table; }
+    }
+
+    public ${tableCapital}Record() 
+      :base(${tableCapital}.${tableCapital.toUpper()}) {
+    }
+  
+#foreach($col in $table.Columns)  
+    public $col.ReturnType $col.Name {
+      get { return Table.${col.Name.toUpper()}.ValueOf(this); }
+      set { Table.${col.Name.toUpper()}.SetValue(this, value); }
+    }     
+#end
+  }
+}
