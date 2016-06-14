@@ -193,7 +193,7 @@ AND CONSTRAINT_TYPE = 'PRIMARY KEY' " + str1 + "ORDER BY tables.TABLE_SCHEMA, ta
 
     public DbTable GetTable(DatabaseBase database, TableBase table)
     {
-      IList<DbTable> tables = GetDbTables(table.TableName, database.GetConnection(false));
+      IList<DbTable> tables = GetDbTables(table.Name, database.GetConnection(false));
       return tables.Count > 0 ? tables[0] : (DbTable)null;
     }
 

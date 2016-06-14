@@ -20,12 +20,12 @@ namespace CooQ.Generate
       {
         if (obj is TableAttribute)
         {
-          str1 = QueryBuilderFactory.CreateTableComment(table.TableName, ((TableAttribute)obj).Description, table.DefaultDatabase);
+          str1 = QueryBuilderFactory.CreateTableComment(table.Name, ((TableAttribute)obj).Description, table.DefaultDatabase);
           break;
         }
       }
       if (str1 == null)
-        str1 = QueryBuilderFactory.CreateTableComment(table.TableName, string.Empty, table.DefaultDatabase);
+        str1 = QueryBuilderFactory.CreateTableComment(table.Name, string.Empty, table.DefaultDatabase);
       stringBuilder.Append(str1).Append(Environment.NewLine);
       foreach (FieldInfo fieldInfo in table.GetType().GetFields())
       {
@@ -38,12 +38,12 @@ namespace CooQ.Generate
           {
             if (obj is ColumnAttribute)
             {
-              str2 = QueryBuilderFactory.CreateColumnComment(table.TableName, ColumnBase.ColumnName, ((ColumnAttribute)obj).Description, table.DefaultDatabase);
+              str2 = QueryBuilderFactory.CreateColumnComment(table.Name, ColumnBase.Name, ((ColumnAttribute)obj).Description, table.DefaultDatabase);
               break;
             }
           }
           if (str2 == null)
-            str2 = QueryBuilderFactory.CreateColumnComment(table.TableName, ColumnBase.ColumnName, string.Empty, table.DefaultDatabase);
+            str2 = QueryBuilderFactory.CreateColumnComment(table.Name, ColumnBase.Name, string.Empty, table.DefaultDatabase);
           stringBuilder.Append(str2).Append(Environment.NewLine);
         }
       }

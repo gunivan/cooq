@@ -1,16 +1,9 @@
 ﻿using CooQ.CooqDataException;
-using CooQ.Builder;
 using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CooQ.Core;
 
 namespace CooQ.Database.PostgreSql
 {
@@ -32,7 +25,7 @@ namespace CooQ.Database.PostgreSql
       this.ConnectionString = String.Format(FORMAT_AUTH_SQL_MODE, setting.Server, setting.Port, setting.Username, setting.Password, setting.Database);
       return this.ConnectionString;
     }
-    
+
     public void AddParam(NpgsqlCommand oCmd, Pair param)
     {
       if ((oCmd == null) || (null == param)) return;
@@ -74,7 +67,7 @@ namespace CooQ.Database.PostgreSql
         sw.Stop();
         Settings.FireQueryExecutedEvent(string.Format("ExeClosure:End execute. {0} (s)", sw.ElapsedMilliseconds / 1000));
       }
-    }                 
+    }
     #endregion
 
     public override void FillClosure(String query, Pair param, CommandType cmdType, Action<DbConnection, DbCommand, DbDataAdapter> action)
@@ -107,9 +100,9 @@ namespace CooQ.Database.PostgreSql
       finally
       {
         sw.Stop();
-        Settings.FireQueryExecutedEvent(string.Format("FillClosure:End execute. {0} (s)", sw.ElapsedMilliseconds / 1000));
+        Settings.FireQueryExecutedEvent(string.Format("FillClosure:End execute. {0} (s), query:{1}", sw.ElapsedMilliseconds / 1000, query));
       }
-    }          
+    }
     #region Update
 
     /// <summary>
@@ -148,10 +141,14 @@ namespace CooQ.Database.PostgreSql
               oAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
               using (var oCmdBuilder = new NpgsqlCommandBuilder(oAdapter))
               {
+                oCmdBuilder.SetAllValues = true;
                 oAdapter.InsertCommand = oCmdBuilder.GetInsertCommand();
                 if (null != oAdapter.InsertCommand)
-                  oAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.Both;
-                oCmdBuilder.GetUpdateCommand();
+                  oAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;                
+                oAdapter.UpdateCommand = oCmdBuilder.GetUpdateCommand();
+                oAdapter.InsertCommand = oCmdBuilder.GetInsertCommand();
+                oAdapter.DeleteCommand = oCmdBuilder.GetDeleteCommand();
+                oCmdBuilder.ConflictOption = ConflictOption.OverwriteChanges;
                 action(oConn, oCmd, oAdapter, oCmdBuilder);
               }
             }
@@ -165,9 +162,9 @@ namespace CooQ.Database.PostgreSql
       finally
       {
         sw.Stop();
-        Settings.FireQueryExecutedEvent(String.Format("UpdateClosure:End. {0} (s)", sw.ElapsedMilliseconds / 1000));
+        Settings.FireQueryExecutedEvent(String.Format("UpdateClosure:End. {0} (s), query:{1}", sw.ElapsedMilliseconds / 1000, query));
       }
-    }              
-    #endregion                    
+    }
+    #endregion
   }
 }

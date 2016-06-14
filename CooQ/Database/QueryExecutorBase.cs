@@ -193,8 +193,14 @@ namespace CooQ.Database
       int nRes = -1;
       UpdateClosure(query, param, (oConn, oCmd, oAdapter, oCmdBuilder) =>
       {
-        nRes = oAdapter.Update(mDt);
-        mDt.AcceptChanges();
+        try
+        {
+          nRes = oAdapter.Update(mDt);
+        }
+        finally
+        {
+          mDt.AcceptChanges();
+        }
       });
       return (nRes >= 0);
     }

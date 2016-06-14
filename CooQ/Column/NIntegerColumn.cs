@@ -2,6 +2,7 @@
 using CooQ.Conditions;
 using CooQ.Interfaces;
 using CooQ.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -227,8 +228,8 @@ namespace CooQ.Column
     [EditorBrowsable(EditorBrowsableState.Never)]
     public override object GetValue(DatabaseBase database, DbDataReader dataReader, int columnIndex)
     {
-      if (dataReader.IsDBNull(columnIndex))
-        return null;
+      if (Convert.IsDBNull(dataReader[columnIndex]))
+        return 0;
       return dataReader.GetInt32(columnIndex);
     }
 
@@ -271,5 +272,9 @@ namespace CooQ.Column
       return null;
     }
 
+    public override bool Nullable()
+    {
+      return true;
+    }
   }
 }

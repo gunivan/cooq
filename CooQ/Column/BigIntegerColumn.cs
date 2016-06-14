@@ -43,92 +43,92 @@ namespace CooQ.Column
 
     public static Condition operator ==(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.EQUALS, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.EQUALS, columnB);
     }
 
     public static Condition operator ==(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.EQUALS, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.EQUALS, columnB);
     }
 
     public static Condition operator ==(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.EQUALS, value);
+      return (Condition)new ColumnCondition(columnA, Operator.EQUALS, value);
     }
 
     public static Condition operator !=(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.NOT_EQUALS, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.NOT_EQUALS, columnB);
     }
 
     public static Condition operator !=(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.NOT_EQUALS, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.NOT_EQUALS, columnB);
     }
 
     public static Condition operator !=(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.NOT_EQUALS, value);
+      return (Condition)new ColumnCondition(columnA, Operator.NOT_EQUALS, value);
     }
 
     public static Condition operator >(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN, columnB);
     }
 
     public static Condition operator >(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN, columnB);
     }
 
     public static Condition operator >(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN, value);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN, value);
     }
 
     public static Condition operator >=(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, columnB);
     }
 
     public static Condition operator >=(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, columnB);
     }
 
     public static Condition operator >=(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, value);
+      return (Condition)new ColumnCondition(columnA, Operator.GREATER_THAN_OR_EQUAL, value);
     }
 
     public static Condition operator <(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN, columnB);
     }
 
     public static Condition operator <(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN, columnB);
     }
 
     public static Condition operator <(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN, value);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN, value);
     }
 
     public static Condition operator <=(BigIntegerColumn columnA, BigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, columnB);
     }
 
     public static Condition operator <=(BigIntegerColumn columnA, NBigIntegerColumn columnB)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, columnB);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, columnB);
     }
 
     public static Condition operator <=(BigIntegerColumn columnA, long value)
     {
-      return (Condition) new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, value);
+      return (Condition)new ColumnCondition(columnA, Operator.LESS_THAN_OR_EQUAL, value);
     }
 
     public static NumericCondition<BigIntegerColumn, NBigIntegerColumn, long> operator +(BigIntegerColumn columnA, BigIntegerColumn columnB)
@@ -208,32 +208,32 @@ namespace CooQ.Column
 
     public Condition In(IList<long> integerList)
     {
-      return (Condition) new InCondition<long>(this, integerList);
+      return (Condition)new InCondition<long>(this, integerList);
     }
 
     public Condition NotIn(IList<long> integerList)
     {
-      return (Condition) new NotInCondition<long>(this, integerList);
+      return (Condition)new NotInCondition<long>(this, integerList);
     }
 
     public Condition In(IExecute nestedQuery)
     {
-      return (Condition) new NestedQueryCondition(this, Operator.IN, nestedQuery);
+      return (Condition)new NestedQueryCondition(this, Operator.IN, nestedQuery);
     }
 
     public Condition NotIn(IExecute nestedQuery)
     {
-      return (Condition) new NestedQueryCondition(this, Operator.NOT_IN, nestedQuery);
+      return (Condition)new NestedQueryCondition(this, Operator.NOT_IN, nestedQuery);
     }
 
     public Condition In(params long[] values)
     {
-      return (Condition) new InCondition<long>(this, values);
+      return (Condition)new InCondition<long>(this, values);
     }
 
     public Condition NotIn(params long[] values)
     {
-      return (Condition) new NotInCondition<long>(this, values);
+      return (Condition)new NotInCondition<long>(this, values);
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -243,7 +243,7 @@ namespace CooQ.Column
       if (this.IsAutoId)
       {
         object obj = dataReader.GetValue(columnIndex);
-        num = !(obj is Decimal) ? (long) obj : (long) ((Decimal) obj);
+        num = !(obj is Decimal) ? (long)obj : (long)((Decimal)obj);
       }
       else
         num = dataReader.GetInt64(columnIndex);
@@ -252,7 +252,7 @@ namespace CooQ.Column
 
     public long ValueOf(Record record)
     {
-      return (long) record.GetValue(this);
+      return Convert.ToInt64(record.GetValue(this));
     }
 
     public void SetValue(Record record, long value)

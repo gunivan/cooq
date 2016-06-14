@@ -34,7 +34,7 @@ namespace CooQ
         dbConnection = transaction.GetOrSetConnection(transaction.Database);
         using (DbCommand command = Transaction.CreateCommand(dbConnection, transaction))
         {
-          command.CommandText = this.TableName;
+          command.CommandText = this.Name;
           command.CommandType = CommandType.StoredProcedure;
           command.CommandTimeout = pTimeout.HasValue ? pTimeout.Value : Settings.DefaultTimeout;
           command.Transaction = transaction.GetOrSetDbTransaction(transaction.Database);

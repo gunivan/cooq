@@ -138,10 +138,14 @@ namespace CooQ
     /// <param name="paramWhere"></param>
     /// <param name="param"></param>
     /// <returns></returns>
-    public static String Select(String table, Pair paramWhere, params String[] param)
+    public static String Select(String table, Pair paramWhere, params String[] selectColumns)
     {
       var sb = new StringBuilder();
       var list = new List<String>();
+
+      var param = selectColumns;
+      if (param == null)
+        param = new List<String>().ToArray();
       foreach (var item in param)
       {
         if (item.Contains(","))
@@ -171,7 +175,7 @@ namespace CooQ
     /// <returns></returns>
     public static string QueryWith(string table, String opCompare, string opName, string[] arrWhere, params string[] selectCols)
     {
-      return Select(table, String.Join(", ", selectCols), Where(arrWhere, opCompare, opName));
+      return Select(table, null == selectCols ? "*" : String.Join(", ", selectCols), Where(arrWhere, opCompare, opName));
     }
 
     /// <summary>
@@ -183,7 +187,7 @@ namespace CooQ
     /// <returns></returns>
     public static string QueryWithAnd(string table, string[] arrWhere, params string[] selectCols)
     {
-      return Select(table, String.Join(", ", selectCols), Where(arrWhere, OP_EQUAL, OP_AND));
+      return Select(table, null == selectCols ? "*" : String.Join(", ", selectCols), Where(arrWhere, OP_EQUAL, OP_AND));
     }
 
     /// <summary>
@@ -195,7 +199,7 @@ namespace CooQ
     /// <returns></returns>
     public static string QueryWithOr(string table, string[] arrWhere, params string[] selectCols)
     {
-      return Select(table, String.Join(", ", selectCols), Where(arrWhere, OP_EQUAL, OP_OR));
+      return Select(table, null == selectCols ? "*" :  String.Join(", ", selectCols), Where(arrWhere, OP_EQUAL, OP_OR));
     }
 
     /// <summary>

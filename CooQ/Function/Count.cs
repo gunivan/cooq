@@ -66,7 +66,7 @@ namespace CooQ.Function
       if (this.mColumn == null)
         str = "COUNT(*)" + this.GetWindowFunctionSql(useAlias);
       else
-        str = "COUNT(" + (this.mDistinct ? " DISTINCT " : string.Empty) + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")" + this.GetWindowFunctionSql(useAlias);
+        str = "COUNT(" + (this.mDistinct ? " DISTINCT " : string.Empty) + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")" + this.GetWindowFunctionSql(useAlias);
       return str;
     }
   }

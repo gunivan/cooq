@@ -34,7 +34,7 @@ namespace CooQ.Function
 
     public override string GetFunctionSql(DatabaseBase database, bool useAlias)
     {
-      return "MAX(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")" + this.GetWindowFunctionSql(useAlias);
+      return "MAX(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")" + this.GetWindowFunctionSql(useAlias);
     }
 
     public override object GetValue(DatabaseBase database, DbDataReader dataReader, int columnIndex)

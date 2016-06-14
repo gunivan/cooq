@@ -37,7 +37,8 @@
     <Reference Include="Logs">
       <HintPath>..\Libs\Logs.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql">
+    <Reference Include="Npgsql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />

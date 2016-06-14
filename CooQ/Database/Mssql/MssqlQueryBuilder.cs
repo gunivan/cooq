@@ -64,12 +64,12 @@ namespace CooQ.Database.Mssql
         stringBuilder.Append(" INTO ");
         if (queryBuilder.IntoTable.IsTemporaryTable)
           stringBuilder.Append("#");
-        stringBuilder.Append(queryBuilder.IntoTable.TableName);
+        stringBuilder.Append(queryBuilder.IntoTable.Name);
       }
       stringBuilder.Append(" FROM ");
       if (queryBuilder.FromTable.IsTemporaryTable)
         stringBuilder.Append("#");
-      stringBuilder.Append(queryBuilder.FromTable.TableName);
+      stringBuilder.Append(queryBuilder.FromTable.Name);
       stringBuilder.Append(" AS ").Append(queryBuilder.FromTable.Alias);
       if (queryBuilder.FromHints != null && queryBuilder.FromHints.Length > 0)
       {
@@ -106,7 +106,7 @@ namespace CooQ.Database.Mssql
           }
           if (join.Table.IsTemporaryTable)
             stringBuilder.Append("#");
-          stringBuilder.Append(join.Table.TableName).Append(" AS ").Append(join.Table.Alias).Append(" ON ").Append(GetConditionSql(database, join.Condition, parameters, true));
+          stringBuilder.Append(join.Table.Name).Append(" AS ").Append(join.Table.Alias).Append(" ON ").Append(GetConditionSql(database, join.Condition, parameters, true));
           if (join.Hints != null && join.Hints.Length > 0)
           {
             stringBuilder.Append(" WITH(");
@@ -140,7 +140,7 @@ namespace CooQ.Database.Mssql
             ColumnBase ColumnBase = (ColumnBase)selectable;
             if (useAlias)
               stringBuilder.Append(ColumnBase.Table.Alias).Append('.');
-            stringBuilder.Append(ColumnBase.ColumnName);
+            stringBuilder.Append(ColumnBase.Name);
           }
           else
           {
@@ -197,7 +197,7 @@ namespace CooQ.Database.Mssql
     public string GetInsertQuery(DatabaseBase database, InsertBuilder insertBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("INSERT INTO ");
-      stringBuilder.Append(insertBuilder.Table.TableName);
+      stringBuilder.Append(insertBuilder.Table.Name);
       stringBuilder.Append("(");
       int index1 = 0;
       while (index1 < insertBuilder.SetValueList.Count)
@@ -205,7 +205,7 @@ namespace CooQ.Database.Mssql
         SetValue setValue = insertBuilder.SetValueList[index1];
         if (index1 > 0)
           stringBuilder.Append(',');
-        stringBuilder.Append(setValue.Column.ColumnName);
+        stringBuilder.Append(setValue.Column.Name);
         checked { ++index1; }
       }
       stringBuilder.Append(")");
@@ -217,7 +217,7 @@ namespace CooQ.Database.Mssql
         {
           if (index2 > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append("INSERTED.").Append(insertBuilder.ReturnColumns[index2].ColumnName);
+          stringBuilder.Append("INSERTED.").Append(insertBuilder.ReturnColumns[index2].Name);
           checked { ++index2; }
         }
       }
@@ -246,7 +246,7 @@ namespace CooQ.Database.Mssql
     public string GetInsertSelectQuery(DatabaseBase database, InsertSelectBuilder insertBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("INSERT INTO ");
-      stringBuilder.Append(insertBuilder.Table.TableName);
+      stringBuilder.Append(insertBuilder.Table.Name);
       stringBuilder.Append("(");
       int index = 0;
       while (index < insertBuilder.InsertColumns.Length)
@@ -254,7 +254,7 @@ namespace CooQ.Database.Mssql
         ColumnBase ColumnBase = insertBuilder.InsertColumns[index];
         if (index > 0)
           stringBuilder.Append(',');
-        stringBuilder.Append(ColumnBase.ColumnName);
+        stringBuilder.Append(ColumnBase.Name);
         checked { ++index; }
       }
       stringBuilder.Append(")");
@@ -267,7 +267,7 @@ namespace CooQ.Database.Mssql
       StringBuilder stringBuilder = new StringBuilder("UPDATE ");
       bool useColumnAlias = updateBuilder.JoinList.Count > 0;
       if (!useColumnAlias)
-        stringBuilder.Append(updateBuilder.Table.TableName);
+        stringBuilder.Append(updateBuilder.Table.Name);
       else
         stringBuilder.Append(updateBuilder.Table.Alias);
       stringBuilder.Append(" SET ");
@@ -279,7 +279,7 @@ namespace CooQ.Database.Mssql
           stringBuilder.Append(',');
         if (useColumnAlias)
           stringBuilder.Append(setValue.Column.Table.Alias).Append(".");
-        stringBuilder.Append(setValue.Column.ColumnName);
+        stringBuilder.Append(setValue.Column.Name);
         if (setValue.Value == null)
         {
           if (parameters != null)
@@ -300,7 +300,7 @@ namespace CooQ.Database.Mssql
         {
           if (index2 > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append("INSERTED.").Append(updateBuilder.ReturnColumns[index2].ColumnName);
+          stringBuilder.Append("INSERTED.").Append(updateBuilder.ReturnColumns[index2].Name);
           checked { ++index2; }
         }
       }
@@ -309,14 +309,14 @@ namespace CooQ.Database.Mssql
       if (updateBuilder.JoinList.Count > 0)
       {
         stringBuilder.Append(" FROM ");
-        stringBuilder.Append(updateBuilder.Table.TableName);
+        stringBuilder.Append(updateBuilder.Table.Name);
         stringBuilder.Append(" AS ").Append(updateBuilder.Table.Alias).Append(" ");
         int index2 = 0;
         while (index2 < updateBuilder.JoinList.Count)
         {
           Join join = updateBuilder.JoinList[index2];
           stringBuilder.Append(",");
-          stringBuilder.Append(join.Table.TableName).Append(" AS ").Append(join.Table.Alias);
+          stringBuilder.Append(join.Table.Name).Append(" AS ").Append(join.Table.Alias);
           if (condition == null)
             condition = join.Condition;
           else
@@ -339,7 +339,7 @@ namespace CooQ.Database.Mssql
     public string GetDeleteQuery(DatabaseBase database, DeleteBuilder deleteBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("DELETE FROM ");
-      stringBuilder.Append(deleteBuilder.Table.TableName);
+      stringBuilder.Append(deleteBuilder.Table.Name);
       if (deleteBuilder.ReturnColumns != null && deleteBuilder.ReturnColumns.Length > 0)
       {
         stringBuilder.Append(" OUTPUT ");
@@ -348,7 +348,7 @@ namespace CooQ.Database.Mssql
         {
           if (index > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append("DELETED.").Append(deleteBuilder.ReturnColumns[index].ColumnName);
+          stringBuilder.Append("DELETED.").Append(deleteBuilder.ReturnColumns[index].Name);
           checked { ++index; }
         }
       }
@@ -359,13 +359,13 @@ namespace CooQ.Database.Mssql
 
     public string GetTruncateQuery(TableBase table)
     {
-      return string.Format("TRUNCATE TABLE {0}", table.TableName);
+      return string.Format("TRUNCATE TABLE {0}", table.Name);
     }
 
     public string GetStoreProcedureQuery(DatabaseBase database, TableBase table, Parameters parameters, object[] objectParams)
     {
       StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.Append("EXEC ").Append(table.TableName);
+      stringBuilder.Append("EXEC ").Append(table.Name);
       int index = 0;
       while (index < objectParams.Length)
       {
@@ -673,7 +673,7 @@ namespace CooQ.Database.Mssql
 
     private string GetColumnSql(ColumnBase column, bool useAlias)
     {
-      return useAlias ? String.Format("{0}.{1}", column.Table.Alias, column.ColumnName) : column.ColumnName;
+      return useAlias ? String.Format("{0}.{1}", column.Table.Alias, column.Name) : column.Name;
     }
 
     public string CreateTableComment(string schemaName, string tableName, string desc)

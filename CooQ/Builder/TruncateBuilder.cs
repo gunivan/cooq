@@ -1,7 +1,4 @@
-﻿using CooQ;
-using CooQ.Database;
-using CooQ.Generate;
-using CooQ.Interfaces;
+﻿using CooQ.Interfaces;
 using CooQ.Types;
 using System;
 using System.Data;

@@ -270,5 +270,9 @@ namespace CooQ.Column
     {
       return null;
     }
+    public override bool Nullable()
+    {
+      return true;
+    }
   }
 }

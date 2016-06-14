@@ -1,16 +1,9 @@
 ﻿using CooQ.CooqDataException;
-using CooQ.Builder;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CooQ.Core;
 
 namespace CooQ.Database.Mssql
 {
@@ -73,7 +66,7 @@ namespace CooQ.Database.Mssql
         }
       }
       catch (SqlException ex)
-      {                  
+      {
         throw new DataAccessException("Error while executing: " + ex.Message);
       }
       finally
@@ -107,7 +100,7 @@ namespace CooQ.Database.Mssql
         }
       }
       catch (SqlException ex)
-      {                  
+      {
         throw new DataAccessException("Error while fill data: " + ex.Message);
       }
       finally
@@ -156,8 +149,11 @@ namespace CooQ.Database.Mssql
               {
                 oAdapter.InsertCommand = oCmdBuilder.GetInsertCommand();
                 if (null != oAdapter.InsertCommand)
-                  oAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.Both;
-                oCmdBuilder.GetUpdateCommand();
+                  oAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
+                oAdapter.UpdateCommand = oCmdBuilder.GetUpdateCommand();
+                oAdapter.InsertCommand = oCmdBuilder.GetInsertCommand();
+                oAdapter.DeleteCommand = oCmdBuilder.GetDeleteCommand();
+                oCmdBuilder.ConflictOption = ConflictOption.OverwriteChanges;
                 action(oConn, oCmd, oAdapter, oCmdBuilder);
               }
             }
@@ -165,7 +161,7 @@ namespace CooQ.Database.Mssql
         }
       }
       catch (SqlException ex)
-      {                        
+      {
         throw new DataAccessException(ex.Message, ex);
       }
       finally

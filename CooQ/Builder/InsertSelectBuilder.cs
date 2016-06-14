@@ -1,6 +1,4 @@
-﻿using CooQ;
-using CooQ.Core;
-using CooQ.Database;
+﻿using CooQ.Core;
 using CooQ.Interfaces;
 using CooQ.Types;
 using System;

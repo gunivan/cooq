@@ -98,7 +98,7 @@ tables.table_name = key_usage.table_name and columns.column_name = key_usage.col
 
     public DbTable GetTable(DatabaseBase database, TableBase table)
     {
-      IList<DbTable> tables = PostgresSchemaProvider.GetDbTables(table.TableName, database.GetConnection(false));
+      IList<DbTable> tables = PostgresSchemaProvider.GetDbTables(table.Name, database.GetConnection(false));
       return tables.Count > 0 ? tables[0] : null;
     }
 

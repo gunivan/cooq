@@ -1,13 +1,9 @@
-﻿using CooQ.Core;
-using CooQ.Interfaces;
+﻿using CooQ.Interfaces;
 using CooQ.Types;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CooQ
 {
@@ -189,10 +185,10 @@ namespace CooQ
       }
       else
       {
-        if (null != condition)
+        if (null == condition)
         {
           query = Query.Select(valueColumn, displayColumn)
-               .From(table)
+               .From(table)               
                .GetSql();
         }
         else

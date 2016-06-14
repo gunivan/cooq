@@ -34,7 +34,7 @@ namespace CooQ.Function
 
     public override string GetFunctionSql(DatabaseBase database, bool useAlias)
     {
-      return "AVG(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+      return "AVG(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
     }
 
     public override object GetValue(DatabaseBase database, DbDataReader dataReader, int columnIndex)

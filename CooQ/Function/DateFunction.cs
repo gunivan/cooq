@@ -76,22 +76,22 @@ namespace CooQ.Function
         switch (this.mDatePart)
         {
           case DatePart.Year:
-            str = "YEAR(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "YEAR(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Month:
-            str = "MONTH(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "MONTH(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.DayOfMonth:
-            str = "DAY(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "DAY(" + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Hour:
-            str = "DATEPART(HOUR," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "DATEPART(HOUR," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Minute:
-            str = "DATEPART(MINUTE," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "DATEPART(MINUTE," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Second:
-            str = "DATEPART(SECOND," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "DATEPART(SECOND," + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           default:
             throw new Exception("Unknown date part value: '" + this.mDatePart.ToString() + "'");
@@ -104,22 +104,22 @@ namespace CooQ.Function
         switch (this.mDatePart)
         {
           case DatePart.Year:
-            str = "EXTRACT(YEAR FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(YEAR FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Month:
-            str = "EXTRACT(MONTH FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(MONTH FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.DayOfMonth:
-            str = "EXTRACT(DAY FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(DAY FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Hour:
-            str = "EXTRACT(HOUR FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(HOUR FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Minute:
-            str = "EXTRACT(MINUTE FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(MINUTE FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           case DatePart.Second:
-            str = "EXTRACT(SECOND FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.ColumnName + ")";
+            str = "EXTRACT(SECOND FROM " + (useAlias ? this.mColumn.Table.Alias + "." : string.Empty) + this.mColumn.Name + ")";
             break;
           default:
             throw new Exception("Unknown date part value: '" + this.mDatePart.ToString() + "'");

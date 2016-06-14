@@ -1,8 +1,5 @@
-﻿using CooQ;
-using CooQ.Conditions;
+﻿using CooQ.Conditions;
 using CooQ.Core;
-using CooQ.Database;
-using CooQ.Generate;
 using CooQ.Interfaces;
 using CooQ.Types;
 using System;

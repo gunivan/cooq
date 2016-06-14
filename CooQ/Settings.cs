@@ -58,7 +58,7 @@ namespace CooQ
       Settings.UseParameters = true;
       Settings.UseConcurrenyChecking = false;
       Settings.DefaultTimeout = 300;
-      Settings.ReturnResultSize = true;
+      Settings.ReturnResultSize = false;
     }
 
     internal static void FireQueryExecutingEvent(DatabaseBase database, string pSql, QueryType pQueryType, DateTime? pStart, IsolationLevel pIsolationLevel, ulong? transactionId)

@@ -51,7 +51,7 @@ namespace CooQ.Function
             stringBuilder.Append(",");
           if (useAlias)
             stringBuilder.Append(ColumnBase.Table.Alias).Append(".");
-          stringBuilder.Append(ColumnBase.ColumnName);
+          stringBuilder.Append(ColumnBase.Name);
           checked { ++index; }
         }
       }
@@ -67,7 +67,7 @@ namespace CooQ.Function
             stringBuilder.Append(",");
           if (useAlias)
             stringBuilder.Append(ColumnBase.Table.Alias).Append(".");
-          stringBuilder.Append(ColumnBase.ColumnName);
+          stringBuilder.Append(ColumnBase.Name);
           if (orderByColumn.GetOrderByColumn.OrderBy == OrderByType.ASC)
             stringBuilder.Append(" ASC");
           if (orderByColumn.GetOrderByColumn.OrderBy == OrderByType.DESC)

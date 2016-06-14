@@ -54,27 +54,27 @@ namespace CooQ
     {
       if (pException == null)
       {
-        LOG.Debug("End: start:{0:MM-dd-yy HH:mm:ss.fff}, end:{1:MM-dd-yy HH:mm:ss.fff}, rows affected:{2}", pStart, pEnd, records);
+        LOG.Debug("End:start:{0:MM-dd-yy HH:mm:ss.fff}, end:{1:MM-dd-yy HH:mm:ss.fff}, rows affected:{2}", pStart, pEnd, records);
       }
       else
       {
-        LOG.Error(string.Format("End: start:{0}, end:{1}, ERROR:{2}", pStart, pEnd, pException.Message), pException);
+        LOG.Error(string.Format("End:start:{0:MM-dd-yy HH:mm:ss.fff}, end:{1:MM-dd-yy HH:mm:ss.fff}, ERROR:{2}", pStart, pEnd, pException.Message), pException);
       }
     }
 
     static void Settings_QueryExecuting(DatabaseBase database, string pSql, QueryType pQueryType, DateTime? pStart, IsolationLevel pIsolationLevel, ulong? transactionId)
     {
-      LOG.Debug("Begin: start:{0}, query:{1}", pStart, pSql);
+      LOG.Debug("Begin:{0:MM-dd-yy HH:mm:ss.fff}, query:{1}", pStart, pSql);
     }
 
     static void Settings_ExecutorExecuting(string query, CommandType type)
     {
-      LOG.Debug("Beign with cmdType, query:{0}", query);
+      LOG.Debug("Beign cmdType, query:{0}", query);
     }
 
     static void Settings_ExecutorExecuted(string message)
     {
-      LOG.Debug("End with cmdType message: {0}", message);
+      LOG.Debug("End cmdType: {0}", message);
     }
     #endregion
 

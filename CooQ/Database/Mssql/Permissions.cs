@@ -28,7 +28,7 @@ namespace CooQ.Database.Mssql
       Dictionary<string, object> dictionary = new Dictionary<string, object>();
       foreach (GrantPermissions.PermSet permissionSet in this.mPermList)
       {
-        string key = permissionSet.Table.TableName.ToLower();
+        string key = permissionSet.Table.Name.ToLower();
         if (dictionary.ContainsKey(key))
           throw new Exception("Table is in permissions set more than once");
         dictionary.Add(key, null);
@@ -79,7 +79,7 @@ namespace CooQ.Database.Mssql
       }
       if (!flag)
         return string.Empty;
-      stringBuilder.Append(" ON ").Append(permissionSet.Table.TableName).Append(" TO ").Append(username).Append(";").Append(Environment.NewLine);
+      stringBuilder.Append(" ON ").Append(permissionSet.Table.Name).Append(" TO ").Append(username).Append(";").Append(Environment.NewLine);
       return stringBuilder.ToString();
     }
 
@@ -120,7 +120,7 @@ namespace CooQ.Database.Mssql
       }
       if (!flag)
         return string.Empty;
-      stringBuilder.Append(" ON ").Append(permissionSet.Table.TableName).Append(" TO ").Append(username).Append(";").Append(Environment.NewLine);
+      stringBuilder.Append(" ON ").Append(permissionSet.Table.Name).Append(" TO ").Append(username).Append(";").Append(Environment.NewLine);
       return stringBuilder.ToString();
     }
 

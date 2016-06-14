@@ -164,18 +164,18 @@ namespace CooQ
         this.Init();
       int index = this.table.Columns.IndexOf(column);
       if (index == -1)
-        throw new CooqDataAccessException("Column does not exist in table class. Table: " + this.table.TableName + ", column name: " + column.ColumnName);
+        throw new CooqDataAccessException("Column does not exist in table class. Table: " + this.table.Name + ", column name: " + column.Name);
       object obj = this.mCurrentData[index];
       if (obj == Record.NOT_SET)
       {
         if (column.IsAutoId)
         {
           if (this.mRowState == Record.RowStateEnum.AddPending)
-            throw new CooqDataAccessException("Auto id on column '" + column.ColumnName + "' has not been set. Row probably hasn't been persisted to database");
-          throw new CooqDataAccessException("Column '" + column.ColumnName + "' is not set on row. This probably means it was not used in the select query");
+            throw new CooqDataAccessException("Auto id on column '" + column.Name + "' has not been set. Row probably hasn't been persisted to database");
+          throw new CooqDataAccessException("Column '" + column.Name + "' is not set on row. This probably means it was not used in the select query");
         }
         if (this.mRowState != Record.RowStateEnum.AddPending)
-          throw new CooqDataAccessException("Column '" + column.ColumnName + "' is not set on row. This probably means it was not used in the select query");
+          throw new CooqDataAccessException("Column '" + column.Name + "' is not set on row. This probably means it was not used in the select query");
         obj = column.GetDefaultType();
       }
       if (this.mRowState == Record.RowStateEnum.DeletePending || this.mRowState == Record.RowStateEnum.DeletePerformedNotYetCommitted)
@@ -199,7 +199,7 @@ namespace CooQ
         this.Init();
       int index = this.table.Columns.IndexOf(column);
       if (index == -1)
-        throw new CooqDataAccessException("Column does not exist in table class. Table: " + this.table.TableName + ", column name: " + column.ColumnName);
+        throw new CooqDataAccessException("Column does not exist in table class. Table: " + this.table.Name + ", column name: " + column.Name);
       if (this.mRowState == Record.RowStateEnum.DeletePending || this.mRowState == Record.RowStateEnum.DeletePerformedNotYetCommitted || this.mRowState == Record.RowStateEnum.DeletedAndCommitted)
         throw new CooqDataAccessException("Cannot set columns data when row is deleted");
       this.mCurrentData[index] = value;

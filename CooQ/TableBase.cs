@@ -38,7 +38,7 @@ namespace CooQ
     /// Name of table in database.
     /// 
     /// </summary>
-    public string TableName
+    public string Name
     {
       get
       {
@@ -185,7 +185,7 @@ namespace CooQ
 
     public override string ToString()
     {
-      return TableName;
+      return Name;
     }
   }
 }

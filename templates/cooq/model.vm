@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ${namespace}.Models
+{                                                     
+#set ($tableCapital = "${table.Name}")
+  [Table("${table.OriginName}")]
+  public class $tableCapital
+  {  
+#foreach($col in $table.Columns)    
+  public static readonly string ${col.Name.toUpper()} = "${col.OriginName}";
+#end
+
+#foreach($col in $table.Columns)
+#if ($col.IsPrimaryKey)
+  [Key]
+  [Column("${col.OriginName}")]
+#else
+  [Column("${col.OriginName}")]
+#end  
+  public ${col.DbType} ${col.Name} {get; set;}
+#end
+  } 
+}

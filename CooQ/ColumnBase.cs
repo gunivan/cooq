@@ -38,7 +38,7 @@ namespace CooQ
     /// Name of column in table
     /// 
     /// </summary>
-    public string ColumnName
+    public string Name
     {
       get
       {
@@ -155,7 +155,7 @@ namespace CooQ
 
     public override string ToString()
     {
-      return ColumnName;
+      return Name;
     }
 
     /// <summary>
@@ -185,103 +185,117 @@ namespace CooQ
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract object GetValue(DatabaseBase database, DbDataReader dataReader, int columnIndex);
 
+    public virtual bool Nullable()
+    {
+      return false;
+    }
+
     public T As<T>(DataRow row)
     {
-      return row.Field<T>(ColumnName);
+      if (Nullable())
+      {
+        var val = row[Name];
+        return val is DBNull ? default(T) : (T)val;
+      }
+      else
+      {
+        return row.Field<T>(Name);
+      }
     }
+
     public void Set<T>(DataRow row, T value)
     {
-      row.SetField<T>(ColumnName, value);
+      row.SetField<T>(Name, value);
     }
 
     public void Set(DataRow row, short value)
     {
-      row.SetField<short>(ColumnName, value);
+      row.SetField<short>(Name, value);
     }
 
     public void Set(DataRow row, short? value)
     {
-      row.SetField<short?>(ColumnName, value);
+      row.SetField<short?>(Name, value);
     }
 
     public void Set(DataRow row, int value)
     {
-      row.SetField<int>(ColumnName, value);
+      row.SetField<int>(Name, value);
     }
 
     public void Set(DataRow row, int? value)
     {
-      row.SetField<int?>(ColumnName, value);
+      row.SetField<int?>(Name, value);
     }
 
     public void Set(DataRow row, long value)
     {
-      row.SetField<long>(ColumnName, value);
+      row.SetField<long>(Name, value);
     }
 
     public void Set(DataRow row, long? value)
     {
-      row.SetField<long?>(ColumnName, value);
+      row.SetField<long?>(Name, value);
     }
 
     public void Set(DataRow row, string value)
     {
-      row.SetField<string>(ColumnName, value);
+      row.SetField<string>(Name, value);
     }
 
     public void Set(DataRow row, Decimal value)
     {
-      row.SetField<decimal>(ColumnName, value);
+      row.SetField<decimal>(Name, value);
     }
 
     public void Set(DataRow row, Decimal? value)
     {
-      row.SetField<decimal?>(ColumnName, value);
+      row.SetField<decimal?>(Name, value);
     }
 
     public void Set(DataRow row, DateTime value)
     {
-      row.SetField<DateTime>(ColumnName, value);
+      row.SetField<DateTime>(Name, value);
     }
 
     public void Set(DataRow row, DateTime? value)
     {
-      row.SetField<DateTime?>(ColumnName, value);
+      row.SetField<DateTime?>(Name, value);
     }
 
     public void Set(DataRow row, DateTimeOffset value)
     {
-      row.SetField<DateTimeOffset>(ColumnName, value);
+      row.SetField<DateTimeOffset>(Name, value);
     }
 
     public void Set(DataRow row, DateTimeOffset? value)
     {
-      row.SetField<DateTimeOffset?>(ColumnName, value);
+      row.SetField<DateTimeOffset?>(Name, value);
     }
 
     public void Set(DataRow row, bool value)
     {
-      row.SetField<bool>(ColumnName, value);
+      row.SetField<bool>(Name, value);
     }
 
     public void Set(DataRow row, bool? value)
     {
-      row.SetField<bool?>(ColumnName, value);
+      row.SetField<bool?>(Name, value);
     }
 
     public void Set(DataRow row, Guid value)
     {
-      row.SetField<Guid>(ColumnName, value);
+      row.SetField<Guid>(Name, value);
     }
 
     public void Set(DataRow row, Guid? value)
     {
-      row.SetField<Guid?>(ColumnName, value);
+      row.SetField<Guid?>(Name, value);
     }
 
     public void Set(DataRow row, byte[] value)
     {
-      row.SetField<byte[]>(ColumnName, value);
+      row.SetField<byte[]>(Name, value);
     }
 
     public Condition BetweenAnd(object from, object to)

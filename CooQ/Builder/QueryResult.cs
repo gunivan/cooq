@@ -1,8 +1,6 @@
-﻿using CooQ;
-using CooQ.Interfaces;
+﻿using CooQ.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Common;
 using System.Linq;
 namespace CooQ.Builder

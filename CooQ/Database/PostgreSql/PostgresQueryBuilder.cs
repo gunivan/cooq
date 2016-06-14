@@ -62,9 +62,9 @@ namespace CooQ.Database.PostgreSql
         stringBuilder.Append(" INTO ");
         if (queryBuilder.IntoTable.IsTemporaryTable)
           stringBuilder.Append("TEMP ");
-        stringBuilder.Append(queryBuilder.IntoTable.TableName);
+        stringBuilder.Append(queryBuilder.IntoTable.Name);
       }
-      stringBuilder.Append(" FROM ").Append(queryBuilder.FromTable.TableName).Append(" AS ").Append(queryBuilder.FromTable.Alias);
+      stringBuilder.Append(" FROM ").Append(queryBuilder.FromTable.Name).Append(" AS ").Append(queryBuilder.FromTable.Alias);
       if (queryBuilder.FromHints != null && queryBuilder.FromHints.Length > 0)
         throw new Exception("From table hints not supported in postgresql sql generator");
       if (queryBuilder.JoinList.Count > 0)
@@ -86,7 +86,7 @@ namespace CooQ.Database.PostgreSql
               throw new Exception("Unknown join type: " + join.JoinType.ToString());
             stringBuilder.Append("RIGHT JOIN ");
           }
-          stringBuilder.Append(join.Table.TableName).Append(" AS ").Append(join.Table.Alias).Append(" ON ").Append(GetConditionSql(database, join.Condition, parameters));
+          stringBuilder.Append(join.Table.Name).Append(" AS ").Append(join.Table.Alias).Append(" ON ").Append(GetConditionSql(database, join.Condition, parameters));
           if (join.Hints != null && join.Hints.Length > 0)
             throw new Exception("Join hints not supported in postgresql sql generator");
           checked { ++index2; }
@@ -106,7 +106,7 @@ namespace CooQ.Database.PostgreSql
           if (selectable is ColumnBase)
           {
             ColumnBase ColumnBase = (ColumnBase)selectable;
-            stringBuilder.Append(ColumnBase.Table.Alias).Append('.').Append(ColumnBase.ColumnName);
+            stringBuilder.Append(ColumnBase.Table.Alias).Append('.').Append(ColumnBase.Name);
           }
           else
           {
@@ -182,7 +182,7 @@ namespace CooQ.Database.PostgreSql
     public string GetInsertQuery(DatabaseBase database, InsertBuilder insertBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("INSERT INTO ");
-      stringBuilder.Append(insertBuilder.Table.TableName);
+      stringBuilder.Append(insertBuilder.Table.Name);
       stringBuilder.Append("(");
       int index1 = 0;
       while (index1 < insertBuilder.SetValueList.Count)
@@ -190,7 +190,7 @@ namespace CooQ.Database.PostgreSql
         SetValue setValue = insertBuilder.SetValueList[index1];
         if (index1 > 0)
           stringBuilder.Append(',');
-        stringBuilder.Append(setValue.Column.ColumnName);
+        stringBuilder.Append(setValue.Column.Name);
         checked { ++index1; }
       }
       stringBuilder.Append(")VALUES(");
@@ -225,7 +225,7 @@ namespace CooQ.Database.PostgreSql
         {
           if (index3 > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append(insertBuilder.ReturnColumns[index3].ColumnName);
+          stringBuilder.Append(insertBuilder.ReturnColumns[index3].Name);
           checked { ++index3; }
         }
       }
@@ -235,7 +235,7 @@ namespace CooQ.Database.PostgreSql
     public string GetInsertSelectQuery(DatabaseBase database, InsertSelectBuilder insertBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("INSERT INTO ");
-      stringBuilder.Append(insertBuilder.Table.TableName);
+      stringBuilder.Append(insertBuilder.Table.Name);
       stringBuilder.Append("(");
       int index = 0;
       while (index < insertBuilder.InsertColumns.Length)
@@ -243,7 +243,7 @@ namespace CooQ.Database.PostgreSql
         ColumnBase ColumnBase = insertBuilder.InsertColumns[index];
         if (index > 0)
           stringBuilder.Append(',');
-        stringBuilder.Append(ColumnBase.ColumnName);
+        stringBuilder.Append(ColumnBase.Name);
         checked { ++index; }
       }
       stringBuilder.Append(")");
@@ -255,7 +255,7 @@ namespace CooQ.Database.PostgreSql
     public string GetUpdateQuery(DatabaseBase database, UpdateBuilder updateBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("UPDATE ");
-      stringBuilder.Append(updateBuilder.Table.TableName).Append(" AS ").Append(updateBuilder.Table.Alias);
+      stringBuilder.Append(updateBuilder.Table.Name).Append(" AS ").Append(updateBuilder.Table.Alias);
       stringBuilder.Append(" SET ");
       int index1 = 0;
       while (index1 < updateBuilder.SetValueList.Count)
@@ -263,7 +263,7 @@ namespace CooQ.Database.PostgreSql
         SetValue setValue = updateBuilder.SetValueList[index1];
         if (index1 > 0)
           stringBuilder.Append(',');
-        stringBuilder.Append(setValue.Column.ColumnName);
+        stringBuilder.Append(setValue.Column.Name);
         if (setValue.Value == null)
         {
           if (parameters != null)
@@ -285,7 +285,7 @@ namespace CooQ.Database.PostgreSql
           Join join = updateBuilder.JoinList[index2];
           if (index2 > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append(join.Table.TableName).Append(" AS ").Append(join.Table.Alias);
+          stringBuilder.Append(join.Table.Name).Append(" AS ").Append(join.Table.Alias);
           if (condition == null)
             condition = join.Condition;
           else
@@ -312,7 +312,7 @@ namespace CooQ.Database.PostgreSql
             stringBuilder.Append(",");
           ColumnBase acolumn = updateBuilder.ReturnColumns[index2];
           stringBuilder.Append(acolumn.Table.Alias).Append(".");
-          stringBuilder.Append(acolumn.ColumnName);
+          stringBuilder.Append(acolumn.Name);
           checked { ++index2; }
         }
       }
@@ -322,7 +322,7 @@ namespace CooQ.Database.PostgreSql
     public string GetDeleteQuery(DatabaseBase database, DeleteBuilder deleteBuilder, Parameters parameters)
     {
       StringBuilder stringBuilder = new StringBuilder("DELETE FROM ");
-      stringBuilder.Append(deleteBuilder.Table.TableName).Append(" AS ").Append(deleteBuilder.Table.Alias);
+      stringBuilder.Append(deleteBuilder.Table.Name).Append(" AS ").Append(deleteBuilder.Table.Alias);
       if (deleteBuilder.WhereCondition != null)
         stringBuilder.Append(" WHERE ").Append(GetConditionSql(database, deleteBuilder.WhereCondition, parameters));
       if (deleteBuilder.ReturnColumns != null && deleteBuilder.ReturnColumns.Length > 0)
@@ -333,7 +333,7 @@ namespace CooQ.Database.PostgreSql
         {
           if (index > 0)
             stringBuilder.Append(",");
-          stringBuilder.Append(deleteBuilder.ReturnColumns[index].ColumnName);
+          stringBuilder.Append(deleteBuilder.ReturnColumns[index].Name);
           checked { ++index; }
         }
       }
@@ -342,7 +342,7 @@ namespace CooQ.Database.PostgreSql
 
     public string GetTruncateQuery(TableBase table)
     {
-      return "TRUNCATE TABLE " + table.TableName;
+      return "TRUNCATE TABLE " + table.Name;
     }
 
     string GetConditionSql(DatabaseBase database, Condition condition, Parameters parameters)
@@ -653,7 +653,7 @@ namespace CooQ.Database.PostgreSql
 
     private string GetColumnSql(ColumnBase column)
     {
-      return column.Table.Alias + '.' + column.ColumnName;
+      return column.Table.Alias + '.' + column.Name;
     }
 
     internal string CreateTableComment(string schemaName, string tableName, string desc)
