@@ -103,6 +103,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Libs\log.conf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,7 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Libs\" />
+    <ProjectReference Include="..\CooQ\CooQ.csproj">
+      <Project>{acfad127-04ed-4ad6-a608-33dd3cd3f8a8}</Project>
+      <Name>CooQ</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="templates\cooq\record.vm">
@@ -131,10 +135,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\hava\CooQ\CooQ.csproj">
-      <Project>{acfad127-04ed-4ad6-a608-33dd3cd3f8a8}</Project>
-      <Name>CooQ</Name>
-    </ProjectReference>
+    <Content Include="Libs\Commons.dll" />
+    <Content Include="Libs\FastColoredTextBox.dll" />
+    <Content Include="Libs\log4net.dll" />
+    <Content Include="Libs\Logs.dll" />
+    <Content Include="Libs\Mono.Security.dll" />
+    <Content Include="Libs\Newtonsoft.Json.dll" />
+    <Content Include="Libs\Npgsql.dll" />
+    <Content Include="Libs\Npgsql.xml" />
+    <Content Include="Libs\NVelocity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -38,7 +38,13 @@ namespace CooQ.Database
       var l = new List<String>();
       foreach (var item in arr)
       {
-        l.Add(item.Substring(0, 1).ToUpper() + item.Substring(1));
+        try
+        {
+          l.Add(item.Substring(0, 1).ToUpper() + item.Substring(1));
+        } catch(Exception e)
+        {
+          l.Add(item);
+        }
       }
       return string.Join("", l);
     }

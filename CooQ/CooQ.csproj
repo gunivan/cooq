@@ -244,5 +244,19 @@
     <Compile Include="Database\Mssql\Permission.cs" />
     <Compile Include="Function\DatePart.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\Commons.dll" />
+    <Content Include="Libs\FastColoredTextBox.dll" />
+    <Content Include="Libs\log4net.dll" />
+    <Content Include="Libs\Logs.dll" />
+    <Content Include="Libs\Mono.Security.dll" />
+    <Content Include="Libs\Newtonsoft.Json.dll" />
+    <Content Include="Libs\Npgsql.dll" />
+    <Content Include="Libs\Npgsql.xml" />
+    <Content Include="Libs\NVelocity.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libs\log.conf" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

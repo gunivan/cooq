@@ -1,0 +1,9 @@
+﻿using HaVa.Model;
+using HaVa.Repository.Base;
+
+namespace HaVa.Repository
+{
+  public class ${table.Name}Repository : CrudRepository<${table.Name}>
+  {
+  }
+}

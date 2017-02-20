@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CooQ;
+using ${namespace}.Record;
+
+namespace ${namespace}.Table
+{                                                     
+#set ($tableCapital = "${table.Name}")
+  public class $tableCapital : CooQ.TableBase
+  {
+    public static readonly $tableCapital ${table.Name.toUpper()} = new $tableCapital();
+#foreach($col in $table.Columns)
+    public ${col.ColumnTypeName} ${col.Name.toUpper()} {get; private set;}
+#end
+
+    public $tableCapital()
+      :base(DatabaseProvider.INSTANCE, "$table.OriginName", typeof(${tableCapital}Record))
+    {
+#foreach($col in $table.Columns)
+      ${col.Name.toUpper()} = new ${col.ColumnTypeName}(this, "$col.OriginName", ${col.IsPrimaryKey.toString().toLower()});
+#end 
+      AddColumns($table.getColumnArrayStringToUpper());
+    }
+
+    public ${tableCapital}Record this[int index, CooQ.IResult result]
+    {
+      get { return (${tableCapital}Record)result.GetRow(this, index); }
+    }
+  } 
+}
