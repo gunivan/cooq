@@ -95,6 +95,6 @@ Query.Delete(TableTest.TABLETEST)
         .Where(TableTest.TABLETEST.COLUMNA = "value 1");
 ```
 
-##License
+## License
 This article, along with any associated source code and files, is licensed under [The MIT License](http://www.opensource.org/licenses/mit-license.php)
 
